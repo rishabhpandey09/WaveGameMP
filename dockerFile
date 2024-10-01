@@ -1,0 +1,14 @@
+# Use an official OpenJDK runtime as a base image
+FROM openjdk:17-jdk-slim
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the entire project folder into the container
+COPY . /app
+
+# Compile the Java source files in the /src/Main directory
+RUN javac -d bin -sourcepath src src/Main/*.java
+
+# Run the game by specifying the main class (replace GameLauncher with your actual main class)
+CMD ["java", "-cp", "bin", "Main.Game"]
